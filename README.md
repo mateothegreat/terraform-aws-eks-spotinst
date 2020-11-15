@@ -25,7 +25,7 @@ module "eks" {
     vpc_cidr                         = "192.1.0.0/16"
     private_subnets                  = [ "192.1.1.0/24", "192.1.2.0/24" ]
     public_subnets                   = [ "192.1.3.0/24", "192.1.3.0/24" ]
-    peering_name                     = "odin-devops-1-to-devops-vpn"
+    peering_name                     = "mycluster-to-devops-vpn"
     peering_owner_id                 = "<origin aws account id>"
     peering_receiver_region          = "us-east-1"
     peering_receiver_profile         = "<my other aws profile>"
