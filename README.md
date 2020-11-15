@@ -1,0 +1,75 @@
+# AWS EKS + Spot.io
+
+* Provisions an EKS cluster in 15 minutes flat.
+* Automagically sets up peering (i.e.: private network connectivity through pfsense in a different vpc.)
+* Outputs galore for integrating in the rest of your pipeline.
+* Creates a "root" service account and outputs token.
+
+## Usage
+
+```hcl
+module "eks" {
+
+    source  = "mateothegreat/eks-spotinst/aws"
+    version = "0.0.1"
+
+    dest_aws_profile_name            = "<aws profile to provision resources under>"
+    spotinst_account                 = "<spot.io account id>"
+    spotinst_token                   = "<spot.io account token>"
+    cluster_name                     = "awesome-1"
+    cluster_version                  = "1.18"
+    region                           = "us-east-1"
+    min_size                         = 1
+    max_size                         = 10
+    desired_capacity                 = 1
+    vpc_cidr                         = "192.1.0.0/16"
+    private_subnets                  = [ "192.1.1.0/24", "192.1.2.0/24" ]
+    public_subnets                   = [ "192.1.3.0/24", "192.1.3.0/24" ]
+    peering_name                     = "odin-devops-1-to-devops-vpn"
+    peering_owner_id                 = "<origin aws account id>"
+    peering_receiver_region          = "us-east-1"
+    peering_receiver_profile         = "<my other aws profile>"
+    peering_receiver_vpc_id          = "<destination peering vpc id>"
+    peering_orginator_route_table_id = "<destination peering to route table id>"
+    peering_originator_cidr          = "<cidr of destination peering network>"
+    notification_sqs_arn             = null // send events to an sqs queue
+    tags                             = {
+
+        environment = "prod"
+
+    }
+
+    launch_specs = [
+
+        {
+
+            name               = "services"
+            root_volume_size   = 100
+            max_instance_count = 3
+            image_id           = "ami-0fae38e27c6113140" // amazon eks linux 2
+            instance_types     = null // let spot.io pick for me
+
+            labels = [ {
+
+                key   = "role"
+                value = "services"
+
+            } ]
+
+            tags = concat(local.tags, [
+
+                {
+
+                    key   = "role"
+                    value = "services"
+
+                }
+
+            ])
+
+        }
+
+    ]
+
+}
+```
