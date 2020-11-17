@@ -31,3 +31,12 @@ module "eks-spot" {
     launch_specs                     = var.launch_specs
 
 }
+
+module "gpu-plugin" {
+
+    depends_on = [ module.eks-spot ]
+
+    count  = var.install_gpu_plugin ? 1 : 0
+    source = "./modules/gpu-plugin"
+
+}
