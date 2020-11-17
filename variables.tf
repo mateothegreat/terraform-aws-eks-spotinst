@@ -184,14 +184,10 @@ variable "launch_specs" {
         root_volume_size   = number
         max_instance_count = number
         instance_types     = list(string)
-        tags               = list(map(string))
+        spot_percentage    = number
 
-        labels = list(object({
-
-            key   = string
-            value = string
-
-        }))
+        tags = map(string)
+        labels = map(string)
 
     }))
 

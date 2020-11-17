@@ -1,4 +1,3 @@
-
 resource "spotinst_ocean_aws_launch_spec" "launch_spec" {
 
     count = length(var.launch_specs)
@@ -15,42 +14,47 @@ resource "spotinst_ocean_aws_launch_spec" "launch_spec" {
 
     }
 
+    strategy {
+
+        spot_percentage = var.launch_specs[ count.index ].spot_percentage
+
+    }
+
     dynamic "labels" {
 
         for_each = var.launch_specs[ count.index ].labels
 
         content {
 
-            key   = labels.value[ "key" ]
-            value = labels.value[ "value" ]
+            key   = labels.key
+            value = labels.value
 
         }
 
     }
 
+    tags {
+
+        key   = "Name"
+        value = "${ var.cluster_name }-ocean-cluster-node-${ var.launch_specs[ count.index ].name }"
+
+    }
+
+    tags {
+
+        key   = "kubernetes.io/cluster/${ var.cluster_name }"
+        value = "owned"
+
+    }
+
     dynamic "tags" {
 
-        for_each = concat([
-
-            {
-
-                key   = "kubernetes.io/cluster/${ var.cluster_name }"
-                value = "owned"
-
-            },
-            {
-
-                key   = "Name"
-                value = "${ var.cluster_name }-ocean-cluster-node-${ var.launch_specs[ count.index ].name }"
-
-            }
-
-        ], var.launch_specs[ count.index ].tags)
+        for_each = var.launch_specs[ count.index ].tags
 
         content {
 
-            key   = tags.value[ "key" ]
-            value = tags.value[ "value" ]
+            key   = tags.key
+            value = tags.value
 
         }
 

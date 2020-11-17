@@ -22,7 +22,7 @@ module "eks" {
     region                           = "us-east-1"
     min_size                         = 1
     max_size                         = 10
-    desired_capacity                 = 1
+    desired_capacity                 = 2
     vpc_cidr                         = "192.1.0.0/16"
     private_subnets                  = [ "192.1.1.0/24", "192.1.2.0/24" ]
     public_subnets                   = [ "192.1.3.0/24", "192.1.3.0/24" ]
@@ -36,12 +36,7 @@ module "eks" {
     notification_sqs_arn             = null // send events to an sqs queue
     cluster_endpoint_private_access  = true
     cluster_endpoint_public_access   = false
-
-    tags = {
-
-        environment = "prod"
-
-    }
+    tags                             = local.tags
 
     launch_specs = [
 
@@ -52,24 +47,13 @@ module "eks" {
             max_instance_count = 3
             image_id           = "ami-0fae38e27c6113140" // amazon eks linux 2
             instance_types     = null // let spot.io pick for me
+            tags               = local.tags
 
-            labels = [ {
+            labels = {
 
-                key   = "role"
-                value = "services"
+                role = "services"
 
-            } ]
-
-            tags = concat(local.tags, [
-
-                {
-
-                    key   = "role"
-                    value = "services"
-
-                }
-
-            ])
+            }
 
         }
 

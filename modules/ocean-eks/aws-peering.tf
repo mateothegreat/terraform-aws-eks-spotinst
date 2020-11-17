@@ -1,4 +1,3 @@
-
 resource "aws_vpc_peering_connection" "this" {
 
     provider = aws.caller
@@ -7,9 +6,7 @@ resource "aws_vpc_peering_connection" "this" {
     peer_vpc_id   = var.peering_receiver_vpc_id
     vpc_id        = module.vpc.vpc_id
     auto_accept   = false
-    tags          = merge(var.tags, {
-        Name = var.peering_name
-    })
+    tags          = var.tags
 
 }
 
@@ -19,11 +16,7 @@ resource "aws_vpc_peering_connection_accepter" "peer" {
 
     vpc_peering_connection_id = aws_vpc_peering_connection.this.id
     auto_accept               = true
-
-    tags = merge(var.tags, {
-        Name = var.peering_name
-        Side = "Accepter"
-    })
+    tags                      = var.tags
 
 }
 
@@ -96,6 +89,7 @@ resource "aws_security_group" "all_worker_mgmt" {
 
     name_prefix = "${ var.cluster_name }-management"
     vpc_id      = module.vpc.vpc_id
+    tags        = var.tags
 
     ingress {
 

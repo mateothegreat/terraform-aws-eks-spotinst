@@ -1,6 +1,6 @@
 variable "dest_aws_profile_name" {
 
-    type = string
+    type        = string
     description = "callers (destination) aws profile name"
 
 }
@@ -181,18 +181,14 @@ variable "launch_specs" {
     type = list(object({
 
         name               = string
-        image_id           = string // amazon-eks-gpu-node-1.16-v20200921
+        image_id           = string
         root_volume_size   = number
         max_instance_count = number
         instance_types     = list(string)
-        tags               = list(map(string))
+        spot_percentage    = number
 
-        labels = list(object({
-
-            key   = string
-            value = string
-
-        }))
+        tags   = map(string)
+        labels = map(string)
 
     }))
 
