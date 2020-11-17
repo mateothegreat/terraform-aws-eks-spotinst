@@ -1,8 +1,9 @@
 # AWS EKS + Spot.io
 
 * Provisions an EKS cluster in 15 minutes flat.
+* Provisions a new VPC with all dependencies.
 * Automagically sets up peering (i.e.: private network connectivity through pfsense in a different vpc.)
-* Outputs galore for integrating in the rest of your pipeline.
+* Installs GPU plugin (optional).
 * Creates a "root" service account and outputs token.
 
 ## Usage
@@ -11,7 +12,7 @@
 module "eks" {
 
     source  = "mateothegreat/eks-spotinst/aws"
-    version = "0.0.1"
+    version = "0.0.3"
 
     dest_aws_profile_name            = "<aws profile to provision resources under>"
     spotinst_account                 = "<spot.io account id>"
@@ -33,7 +34,10 @@ module "eks" {
     peering_orginator_route_table_id = "<destination peering to route table id>"
     peering_originator_cidr          = "<cidr of destination peering network>"
     notification_sqs_arn             = null // send events to an sqs queue
-    tags                             = {
+    cluster_endpoint_private_access  = true
+    cluster_endpoint_public_access   = false
+
+    tags = {
 
         environment = "prod"
 

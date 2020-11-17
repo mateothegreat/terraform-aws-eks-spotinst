@@ -199,8 +199,24 @@ variable "launch_specs" {
 
 variable "install_gpu_plugin" {
 
-    type = bool
+    type        = bool
     description = "if true the nvidia gpu plugin daemonset will be installed"
-    default = false
+    default     = false
+
+}
+
+variable "cluster_endpoint_private_access" {
+
+    type        = bool
+    description = "enable private access to the kubernetes api endpoint"
+    default     = true
+
+}
+
+variable "cluster_endpoint_public_access" {
+
+    type        = bool
+    description = "enable private access to the kubernetes api endpoint"
+    default     = false
 
 }

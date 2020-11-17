@@ -197,3 +197,19 @@ variable "launch_specs" {
     }))
 
 }
+
+variable "cluster_endpoint_private_access" {
+
+    type        = bool
+    description = "enable private access to the kubernetes api endpoint"
+    default     = true
+
+}
+
+variable "cluster_endpoint_public_access" {
+
+    type        = bool
+    description = "enable private access to the kubernetes api endpoint"
+    default     = true
+
+}

@@ -1,35 +1,3 @@
-#resource "aws_eks_cluster" "eks" {
-#
-#    provider = aws.caller
-#
-#    depends_on = [
-#
-#        aws_route.peering_forward,
-#        aws_route.peering_backward,
-#        aws_route.peering_backward_private_subnets,
-#        aws_route.peering_backward_public_subnets,
-#
-#        aws_iam_role_policy_attachment.workers_AmazonEC2ContainerRegistryReadOnly,
-#        aws_iam_role_policy_attachment.workers_AmazonEKS_CNI_Policy,
-#        aws_iam_role_policy_attachment.workers_AmazonEKSWorkerNodePolicy
-#
-#    ]
-#
-#    name     = var.cluster_name
-#    role_arn = aws_iam_role.workers.arn
-#    tags     = var.tags
-#    version  = var.cluster_version
-#
-#    vpc_config {
-#
-#        endpoint_private_access = true
-#        endpoint_public_access  = false
-#        subnet_ids              = module.vpc.private_subnets
-#
-#    }
-#
-#
-#}
 module "eks" {
 
     providers = {
@@ -51,14 +19,18 @@ module "eks" {
 
     ]
 
-    source           = "terraform-aws-modules/eks/aws"
-    write_kubeconfig = false
-    cluster_name     = var.cluster_name
-    cluster_version  = var.cluster_version
-    subnets          = module.vpc.private_subnets
-    tags             = var.tags
-    vpc_id           = module.vpc.vpc_id
-    map_roles        = [
+    source                               = "terraform-aws-modules/eks/aws"
+    write_kubeconfig                     = false
+    cluster_name                         = var.cluster_name
+    cluster_version                      = var.cluster_version
+    subnets                              = module.vpc.private_subnets
+    tags                                 = var.tags
+    vpc_id                               = module.vpc.vpc_id
+    worker_additional_security_group_ids = [ aws_security_group.all_worker_mgmt.id ]
+    cluster_endpoint_private_access      = var.cluster_endpoint_private_access
+    cluster_endpoint_public_access       = var.cluster_endpoint_public_access
+
+    map_roles = [
 
         {
 
@@ -69,9 +41,5 @@ module "eks" {
         }
 
     ]
-
-    worker_additional_security_group_ids = [ aws_security_group.all_worker_mgmt.id ]
-    cluster_endpoint_private_access      = true
-    cluster_endpoint_public_access       = false
 
 }
