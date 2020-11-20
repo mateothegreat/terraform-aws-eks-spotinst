@@ -193,14 +193,6 @@ variable "launch_specs" {
 
 }
 
-variable "install_gpu_plugin" {
-
-    type        = bool
-    description = "if true the nvidia gpu plugin daemonset will be installed"
-    default     = false
-
-}
-
 variable "cluster_endpoint_private_access" {
 
     type        = bool
