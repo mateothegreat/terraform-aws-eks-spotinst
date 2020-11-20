@@ -33,12 +33,3 @@ module "eks-spot" {
     cluster_endpoint_public_access   = var.cluster_endpoint_public_access
 
 }
-
-module "gpu-plugin" {
-
-    depends_on = [ module.eks-spot ]
-
-    count  = var.install_gpu_plugin ? 1 : 0
-    source = "./modules/gpu-plugin"
-
-}
