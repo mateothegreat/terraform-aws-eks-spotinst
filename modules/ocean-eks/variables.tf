@@ -6,30 +6,40 @@ variable "dest_aws_profile_name" {
 }
 
 variable "spotinst_token" {
+
     type        = string
     description = "Spotinst Personal Access token"
+
 }
 
 variable "spotinst_account" {
+
     type        = string
     description = "Spotinst account ID"
+
 }
 
 variable "cluster_identifier" {
+
     type        = string
     description = "Cluster identifier"
     default     = null
+
 }
 
 variable "cluster_name" {
+
     type        = string
     description = "Cluster name"
+
 }
 
 variable "cluster_version" {
+
     type        = string
     description = "Kubernetes supported version"
     default     = "1.18"
+
 }
 
 variable "region" {
