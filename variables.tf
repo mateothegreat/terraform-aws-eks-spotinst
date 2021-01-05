@@ -208,3 +208,11 @@ variable "cluster_endpoint_public_access" {
     default     = false
 
 }
+
+variable "max_scale_down_percentage" {
+
+    type = number
+    description = "maximum percent to scale down in a period"
+    default = 90
+
+}

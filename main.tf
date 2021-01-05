@@ -13,6 +13,7 @@ module "eks-spot" {
     min_size                         = var.min_size
     max_size                         = var.max_size
     desired_capacity                 = var.desired_capacity
+    max_scale_down_percentage        = var.max_scale_down_percentage
     key_name                         = var.key_name
     associate_public_ip_address      = var.associate_public_ip_address
     vpc_cidr                         = var.vpc_cidr

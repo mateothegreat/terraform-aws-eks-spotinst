@@ -44,3 +44,12 @@ resource "aws_iam_role_policy_attachment" "workers_AmazonEC2ContainerRegistryRea
     role       = aws_iam_role.workers.name
 
 }
+
+#
+# For elasticsearch s3 backups
+#
+resource "aws_iam_policy" {
+
+    policy = ""
+
+}

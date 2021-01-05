@@ -40,6 +40,12 @@ resource "spotinst_ocean_aws" "this" {
         autoscale_is_enabled     = true
         autoscale_is_auto_config = true
 
+        autoscale_down {
+
+            max_scale_down_percentage = var.max_scale_down_percentage
+
+        }
+
     }
 
 }
