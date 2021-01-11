@@ -32,5 +32,5 @@ module "eks-spot" {
     launch_specs                     = var.launch_specs
     cluster_endpoint_private_access  = var.cluster_endpoint_private_access
     cluster_endpoint_public_access   = var.cluster_endpoint_public_access
-
+    additional_security_group        = var.additional_security_group
 }

@@ -26,7 +26,7 @@ module "eks" {
     subnets                              = module.vpc.private_subnets
     tags                                 = var.tags
     vpc_id                               = module.vpc.vpc_id
-    worker_additional_security_group_ids = [ aws_security_group.all_worker_mgmt.id ]
+    worker_additional_security_group_ids = [ aws_security_group.all_worker_mgmt.id, var.additional_security_group ]
     cluster_endpoint_private_access      = var.cluster_endpoint_private_access
     cluster_endpoint_public_access       = var.cluster_endpoint_public_access
 

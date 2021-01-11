@@ -227,3 +227,11 @@ variable "max_scale_down_percentage" {
     default = 90
 
 }
+
+variable "additional_security_group" {
+
+    type = string
+    description = "additional security group to assign to worker nodes"
+    default = null
+
+}
