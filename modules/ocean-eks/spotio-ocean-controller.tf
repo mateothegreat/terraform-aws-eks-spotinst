@@ -19,5 +19,6 @@ module "ocean-controller" {
     spotinst_token     = var.spotinst_token
     spotinst_account   = var.spotinst_account
     cluster_identifier = var.cluster_name
+    node_selector      = var.controller_node_selector
 
 }

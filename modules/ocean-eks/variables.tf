@@ -235,3 +235,10 @@ variable "additional_security_group" {
     default = null
 
 }
+
+variable "controller_node_selector" {
+
+    type        = map(string)
+    description = "node_selector for the ocean controller pod"
+
+}

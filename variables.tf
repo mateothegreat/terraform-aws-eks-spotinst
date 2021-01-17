@@ -186,7 +186,7 @@ variable "launch_specs" {
         instance_types     = list(string)
         spot_percentage    = number
 
-        tags = map(string)
+        tags   = map(string)
         labels = map(string)
 
     }))
@@ -211,17 +211,23 @@ variable "cluster_endpoint_public_access" {
 
 variable "max_scale_down_percentage" {
 
-    type = number
+    type        = number
     description = "maximum percent to scale down in a period"
-    default = 90
+    default     = 90
 
 }
 
 variable "additional_security_group" {
 
-    type = string
+    type        = string
     description = "additional security group to assign to worker nodes"
-    default = null
+    default     = null
 
 }
 
+variable "controller_node_selector" {
+
+    type        = map(string)
+    description = "node_selector for the ocean controller pod"
+
+}

@@ -249,6 +249,8 @@ resource "kubernetes_deployment" "this" {
       spec {
         priority_class_name = "system-cluster-critical"
 
+        node_selector = var.node_selector
+
         affinity {
           node_affinity {
             preferred_during_scheduling_ignored_during_execution {
@@ -283,6 +285,7 @@ resource "kubernetes_deployment" "this" {
           image             = "spotinst/kubernetes-cluster-controller:1.0.67"
           name              = "spotinst-kubernetes-cluster-controller"
           image_pull_policy = "Always"
+
 
           liveness_probe {
             http_get {

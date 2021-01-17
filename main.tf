@@ -33,4 +33,6 @@ module "eks-spot" {
     cluster_endpoint_private_access  = var.cluster_endpoint_private_access
     cluster_endpoint_public_access   = var.cluster_endpoint_public_access
     additional_security_group        = var.additional_security_group
+    controller_node_selector         = var.controller_node_selector
+
 }
