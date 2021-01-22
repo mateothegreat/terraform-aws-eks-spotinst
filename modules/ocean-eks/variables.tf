@@ -222,17 +222,17 @@ variable "cluster_endpoint_public_access" {
 
 variable "max_scale_down_percentage" {
 
-    type = number
+    type        = number
     description = "maximum percent to scale down in a period"
-    default = 90
+    default     = 90
 
 }
 
 variable "additional_security_group" {
 
-    type = string
+    type        = string
     description = "additional security group to assign to worker nodes"
-    default = null
+    default     = null
 
 }
 
@@ -240,5 +240,19 @@ variable "controller_node_selector" {
 
     type        = map(string)
     description = "node_selector for the ocean controller pod"
+
+}
+variable "instance_types_blacklist_gpu" {
+
+    type        = list(string)
+    description = "types to blacklist for GPU instance types"
+
+    default = [
+
+        "g4ad.16xlarge",
+        "g4ad.4xlarge",
+        "g4ad.8xlarge"
+
+    ]
 
 }

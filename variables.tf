@@ -231,3 +231,18 @@ variable "controller_node_selector" {
     description = "node_selector for the ocean controller pod"
 
 }
+
+variable "instance_types_blacklist_gpu" {
+
+    type        = list(string)
+    description = "types to blacklist for GPU instance types"
+
+    default = [
+
+        "g4ad.16xlarge",
+        "g4ad.4xlarge",
+        "g4ad.8xlarge"
+
+    ]
+
+}
