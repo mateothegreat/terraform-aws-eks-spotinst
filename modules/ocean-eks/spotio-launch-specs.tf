@@ -21,6 +21,18 @@ resource "spotinst_ocean_aws_launch_spec" "launch_spec" {
 
     }
 
+    #
+    # https://registry.terraform.io/providers/spotinst/spotinst/latest/docs/resources/ocean_aws_launch_spec#autoscale_headrooms
+    #
+    autoscale_headrooms {
+
+        num_of_units    = var.launch_specs[ count.index ].autoscale_headrooms.num_of_units
+        cpu_per_unit    = var.launch_specs[ count.index ].autoscale_headrooms.cpu_per_unit
+        gpu_per_unit    = var.launch_specs[ count.index ].autoscale_headrooms.gpu_per_unit
+        memory_per_unit = var.launch_specs[ count.index ].autoscale_headrooms.memory_per_unit
+
+    }
+
     dynamic "labels" {
 
         for_each = var.launch_specs[ count.index ].labels

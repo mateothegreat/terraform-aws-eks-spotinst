@@ -180,14 +180,24 @@ variable "launch_specs" {
 
         name               = string
         image_id           = string
-        // amazon-eks-gpu-node-1.16-v20200921
         root_volume_size   = number
         max_instance_count = number
         instance_types     = list(string)
         spot_percentage    = number
+        tags               = map(string)
+        labels             = map(string)
 
-        tags   = map(string)
-        labels = map(string)
+        #
+        # See https://registry.terraform.io/providers/spotinst/spotinst/latest/docs/resources/ocean_aws_launch_spec#autoscale_headrooms
+        #
+        autoscale_headrooms = object({
+
+            num_of_units    = number
+            cpu_per_unit    = number
+            gpu_per_unit    = number
+            memory_per_unit = number
+
+        })
 
     }))
 
