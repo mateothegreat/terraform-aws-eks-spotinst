@@ -12,7 +12,7 @@
 module "eks" {
 
     source  = "mateothegreat/eks-spotinst/aws"
-    version = "0.0.3"
+    version = "<version goes here>"
 
     dest_aws_profile_name            = "<aws profile to provision resources under>"
     spotinst_account                 = "<spot.io account id>"
@@ -33,7 +33,7 @@ module "eks" {
     peering_receiver_vpc_id          = "<destination peering vpc id>"
     peering_orginator_route_table_id = "<destination peering to route table id>"
     peering_originator_cidr          = "<cidr of destination peering network>"
-    notification_sqs_arn             = null // send events to an sqs queue
+    notification_sqs_arn             = null
     cluster_endpoint_private_access  = true
     cluster_endpoint_public_access   = false
     tags                             = local.tags
@@ -45,13 +45,22 @@ module "eks" {
             name               = "services"
             root_volume_size   = 100
             max_instance_count = 3
-            image_id           = "ami-0fae38e27c6113140" // amazon eks linux 2
-            instance_types     = null // let spot.io pick for me
+            image_id           = "ami-0fae38e27c6113140"
+            instance_types     = null
             tags               = local.tags
 
             labels = {
 
                 role = "services"
+
+            }
+
+            autoscale_headrooms = {
+
+                num_of_units    = 5
+                cpu_per_unit    = 1000
+                gpu_per_unit    = 0
+                memory_per_unit = 2048
 
             }
 
