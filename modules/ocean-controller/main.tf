@@ -282,10 +282,9 @@ resource "kubernetes_deployment" "this" {
         }
 
         container {
-          image             = "spotinst/kubernetes-cluster-controller:1.0.67"
+          image             = "spotinst/kubernetes-cluster-controller:latest"
           name              = "spotinst-kubernetes-cluster-controller"
           image_pull_policy = "Always"
-
 
           liveness_probe {
             http_get {
