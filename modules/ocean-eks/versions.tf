@@ -16,7 +16,7 @@ terraform {
 
         spotinst = {
 
-            source = "terraform-providers/spotinst"
+            source = "spotinst/spotinst"
 
         }
 
