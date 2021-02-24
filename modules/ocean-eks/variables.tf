@@ -267,3 +267,17 @@ variable "instance_types_blacklist_gpu" {
     ]
 
 }
+
+variable "map_users" {
+
+    description = "Additional IAM users to add to the aws-auth configmap. See examples/basic/variables.tf for example format."
+
+    type = list(object({
+        userarn  = string
+        username = string
+        groups   = list(string)
+    }))
+
+    default = [ ]
+
+}

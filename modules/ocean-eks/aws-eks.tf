@@ -42,4 +42,6 @@ module "eks" {
 
     ]
 
+    map_users = map_users
+
 }

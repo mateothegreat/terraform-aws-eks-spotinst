@@ -35,5 +35,6 @@ module "eks-spot" {
     additional_security_group        = var.additional_security_group
     controller_node_selector         = var.controller_node_selector
     instance_types_blacklist_gpu     = var.instance_types_blacklist_gpu
+    map_users                        = var.map_users
 
 }
