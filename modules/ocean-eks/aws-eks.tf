@@ -42,6 +42,6 @@ module "eks" {
 
     ]
 
-    map_users = map_users
+    map_users = var.map_users
 
 }
