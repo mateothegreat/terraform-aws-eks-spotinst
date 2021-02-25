@@ -36,5 +36,6 @@ module "eks-spot" {
     controller_node_selector         = var.controller_node_selector
     instance_types_blacklist_gpu     = var.instance_types_blacklist_gpu
     map_users                        = var.map_users
+    roll_all_nodes_on_change         = var.roll_all_nodes_on_change
 
 }

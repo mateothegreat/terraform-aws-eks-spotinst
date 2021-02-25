@@ -8,7 +8,6 @@ resource "spotinst_ocean_aws_launch_spec" "launch_spec" {
     instance_types   = var.launch_specs[ count.index ].instance_types
     root_volume_size = var.launch_specs[ count.index ].root_volume_size
 
-
     resource_limits {
 
         max_instance_count = var.launch_specs[ count.index ].max_instance_count

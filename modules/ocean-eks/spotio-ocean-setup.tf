@@ -22,6 +22,12 @@ resource "spotinst_ocean_aws" "this" {
         /etc/eks/bootstrap.sh ${var.cluster_name}
     EOF
 
+    update_policy {
+
+        should_roll = var.roll_all_nodes_on_change
+
+    }
+
     tags {
 
         key   = "Name"

@@ -270,3 +270,11 @@ variable "map_users" {
     default = [ ]
 
 }
+
+variable "roll_all_nodes_on_change" {
+
+    description = "whether or not to re-schedule all nodes when the configuration changes"
+    type        = bool
+    default     = false
+
+}

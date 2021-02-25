@@ -262,7 +262,10 @@ variable "instance_types_blacklist_gpu" {
 
         "g4ad.16xlarge",
         "g4ad.4xlarge",
-        "g4ad.8xlarge"
+        "g4ad.8xlarge",
+
+        "g4dn.16xlarge",
+        "p3.2xlarge"
 
     ]
 
@@ -279,5 +282,13 @@ variable "map_users" {
     }))
 
     default = [ ]
+
+}
+
+variable "roll_all_nodes_on_change" {
+
+    description = "whether or not to re-schedule all nodes when the configuration changes"
+    type        = bool
+    default     = false
 
 }
