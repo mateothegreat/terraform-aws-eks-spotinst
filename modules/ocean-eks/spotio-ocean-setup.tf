@@ -55,4 +55,14 @@ resource "spotinst_ocean_aws" "this" {
 
     }
 
+    lifecycle {
+
+        ignore_changes = [
+
+            "desired_capacity"
+
+        ]
+
+    }
+
 }
