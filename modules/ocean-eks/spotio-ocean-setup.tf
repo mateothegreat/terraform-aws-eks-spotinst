@@ -59,7 +59,7 @@ resource "spotinst_ocean_aws" "this" {
 
         ignore_changes = [
 
-            "desired_capacity"
+            desired_capacity
 
         ]
 
