@@ -39,3 +39,9 @@ output "cluster_security_group_id" {
     value       = module.eks-spot.cluster_security_group_id
 
 }
+
+output "workers_default_ami_id" {
+
+    value = module.eks-spot.workers_default_ami_id
+
+}
