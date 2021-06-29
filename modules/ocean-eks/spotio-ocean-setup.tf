@@ -85,7 +85,40 @@ module "k8s-ocean" {
 
     # Additional Tags
     tags = [ {
-        key   = "CreatedBy",
+        key   = "CreatedB{
+
+        source           = "stevenfeltner/k8s-ocean/spotinst"
+        version          = "0.1.4"
+        # Spot.io Credentials
+        spotinst_token   = var.spotinst_token
+        spotinst_account = var.spotinst_account
+
+        # Configuration
+        cluster_name                = "mlfabric-sandbox-test-2"
+        region                      = "us-east-1"
+        subnet_ids                  = module.vpc.private_subnets
+        worker_instance_profile_arn = aws_iam_instance_profile.workers.arn
+        security_groups             = [ aws_security_group.all_worker_mgmt.id, module.eks.worker_security_group_id ]
+
+        # Additional Tags
+        tags = [ {
+            key   = "CreatedBy",
+            value = "Terraform"
+        } ]
+
+        #    account_env    = local.cluster_name
+        #    application    = local.cluster_name
+        #    backup         = "daily",
+        #    customer       = "n/a",
+        #    environment    = var.branch,
+        #    lob_division   = "maa-ml",
+        #    owner          = "matthew.davis@moodys.com"
+        #    patch_level    = "lob_ondemand"
+        #    "Patch Group"  = "linux"
+        #    provisioned_by = "matthew.davis@moodys.com"
+        #    revenue        = "n"
+        #    scheduler      = "24/7"
+    }y",
         value = "Terraform"
     } ]
 
