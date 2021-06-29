@@ -68,28 +68,28 @@
 #}
 
 
-#module "k8s-ocean" {
-#
-#
-#    source           = "stevenfeltner/k8s-ocean/spotinst"
-#    version          = "0.1.4"
-#    # Spot.io Credentials
-#    spotinst_token   = var.spotinst_token
-#    spotinst_account = var.spotinst_account
-#
-#    # Configuration
-#    cluster_name                = module.eks.cluster_id
-#    region                      = "us-east-1"
-#    subnet_ids                  = concat(module.vpc.public_subnets, module.vpc.private_subnets)
-#    worker_instance_profile_arn = aws_iam_instance_profile.workers.arn
-#    security_groups             = [ aws_security_group.all_worker_mgmt.id, module.eks.worker_security_group_id ]
-#    associate_public_ip_address = false
-#    should_roll = true
-#    key_name = var.key_name
-#    # Additional Tags
-#    tags = [ {
-#        key   = "CreatedBy",
-#        value = "Terraform"
-#    } ]
-#
-#}
+module "k8s-ocean" {
+
+
+    source           = "stevenfeltner/k8s-ocean/spotinst"
+    version          = "0.1.4"
+    # Spot.io Credentials
+    spotinst_token   = var.spotinst_token
+    spotinst_account = var.spotinst_account
+
+    # Configuration
+    cluster_name                = module.eks.cluster_id
+    region                      = "us-east-1"
+    subnet_ids                  = concat(module.vpc.public_subnets, module.vpc.private_subnets)
+    worker_instance_profile_arn = aws_iam_instance_profile.workers.arn
+    security_groups             = [ aws_security_group.all_worker_mgmt.id, module.eks.worker_security_group_id ]
+    associate_public_ip_address = false
+    should_roll = true
+    key_name = var.key_name
+    # Additional Tags
+    tags = [ {
+        key   = "CreatedBy",
+        value = "Terraform"
+    } ]
+
+}
