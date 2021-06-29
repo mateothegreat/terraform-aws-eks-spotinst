@@ -26,6 +26,12 @@ resource "spotinst_ocean_aws" "this" {
 
         should_roll = var.roll_all_nodes_on_change
 
+        roll_config {
+
+            batch_size_percentage = 10
+
+        }
+
     }
 
     tags {
