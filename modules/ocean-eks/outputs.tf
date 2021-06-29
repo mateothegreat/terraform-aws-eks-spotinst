@@ -40,12 +40,12 @@ output "ocean_id" {
 
 }
 
-output "service_account_token" {
-
-  description = "service account token for toot"
-  value = data.kubernetes_secret.this.data.token
-
-}
+#output "service_account_token" {
+#
+#  description = "service account token for toot"
+#  value = data.kubernetes_secret.this.data.token
+#
+#}
 
 output "vpc_id" {
 

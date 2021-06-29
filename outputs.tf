@@ -12,12 +12,12 @@ output "cluster_endpoint" {
 
 }
 
-output "service_account_token" {
-
-    description = "service account token for root"
-    value       = module.eks-spot.service_account_token
-
-}
+#output "service_account_token" {
+#
+#    description = "service account token for root"
+#    value       = module.eks-spot.service_account_token
+#
+#}
 
 output "vpc_id" {
 
