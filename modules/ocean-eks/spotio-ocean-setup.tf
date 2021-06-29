@@ -70,6 +70,8 @@
 
 module "k8s-ocean" {
 
+    depends_on       = [ module.eks ]
+
     source           = "stevenfeltner/k8s-ocean/spotinst"
     version          = "0.1.4"
     # Spot.io Credentials
@@ -77,7 +79,7 @@ module "k8s-ocean" {
     spotinst_account = var.spotinst_account
 
     # Configuration
-    cluster_name                = "mlfabric-sandbox-test-2"
+    cluster_name                = module.eks.cluster_id
     region                      = "us-east-1"
     subnet_ids                  = module.vpc.private_subnets
     worker_instance_profile_arn = aws_iam_instance_profile.workers.arn
