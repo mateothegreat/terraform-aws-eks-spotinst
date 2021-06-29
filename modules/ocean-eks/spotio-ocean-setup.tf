@@ -85,6 +85,7 @@ module "k8s-ocean" {
     security_groups             = [ aws_security_group.all_worker_mgmt.id, module.eks.worker_security_group_id ]
     associate_public_ip_address = false
     should_roll = true
+    key_name = var.key_name
     # Additional Tags
     tags = [ {
         key   = "CreatedBy",
