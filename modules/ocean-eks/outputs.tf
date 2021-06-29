@@ -33,12 +33,12 @@ output "cluster_id" {
   value       = module.eks.cluster_id
 }
 
-output "ocean_id" {
-
-  description = "Ocean id"
-  value = module.k8s-ocean.ocean_id
-
-}
+#output "ocean_id" {
+#
+#  description = "Ocean id"
+#  value = module.k8s-ocean.ocean_id
+#
+#}
 
 #output "service_account_token" {
 #
