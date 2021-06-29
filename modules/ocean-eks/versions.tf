@@ -8,11 +8,11 @@ terraform {
 
         }
 
-        kubernetes = {
-
-            source = "hashicorp/kubernetes"
-
-        }
+#        kubernetes = {
+#
+#            source = "hashicorp/kubernetes"
+#
+#        }
 
         spotinst = {
 
