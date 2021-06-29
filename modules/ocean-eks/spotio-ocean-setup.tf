@@ -70,7 +70,6 @@
 
 module "k8s-ocean" {
 
-    depends_on       = [ module.eks ]
 
     source           = "stevenfeltner/k8s-ocean/spotinst"
     version          = "0.1.4"
