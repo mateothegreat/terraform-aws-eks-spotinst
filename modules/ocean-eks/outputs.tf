@@ -36,7 +36,7 @@ output "cluster_id" {
 output "ocean_id" {
 
   description = "Ocean id"
-  value = module.k8s-ocean.id
+  value = module.k8s-ocean.ocean_id
 
 }
 
