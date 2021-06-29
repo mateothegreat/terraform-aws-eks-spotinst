@@ -73,3 +73,9 @@ output "private_route_table_ids" {
   value = module.vpc.private_route_table_ids
 
 }
+
+output "workers_default_ami_id" {
+
+  value = module.eks.workers_default_ami_id
+
+}
