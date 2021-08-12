@@ -253,6 +253,9 @@ variable "instance_types_blacklist_gpu" {
         "g4ad.4xlarge",
         "g4ad.8xlarge",
 
+        "g2.2xlarge", # nvidia grid gpu
+        "g2.8xlarge", # nvidia grid gpu
+
         "g4dn.8xlarge",
         "g4dn.16xlarge",
         "p3.2xlarge"
