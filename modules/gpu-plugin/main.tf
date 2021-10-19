@@ -118,6 +118,7 @@ resource "kubernetes_daemonset" "gpu-plugin" {
                                         "g4dn.8xlarge",
                                         "g4dn.16xlarge",
                                         "g4dn.12xlarge",
+                                        "g3.2xlarge",
                                         "g3.4xlarge",
                                         "g3.8xlarge",
                                         "g3.16xlarge",
