@@ -254,10 +254,9 @@ variable "instance_types_blacklist_gpu" {
         "g4ad.8xlarge",
 
         "g2.2xlarge",   # nvidia grid gpu
-        "g2.4xlarge",   # nvidia grid gpu
         "g2.8xlarge",   # nvidia grid gpu
 
-        "g3.2xlarge",   # nvidia tesla gpu
+        "g3s.xlarge",   # nvidia tesla gpu
         "g3.4xlarge",   # nvidia tesla gpu
         "g3.8xlarge",   # nvidia tesla gpu
         "g3.16xlarge",  # nvidia tesla gpu
