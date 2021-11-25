@@ -9,7 +9,7 @@ resource "spotinst_ocean_aws" "this" {
     min_size                    = var.min_size
     desired_capacity            = var.desired_capacity
     subnet_ids                  = module.vpc.private_subnets
-    image_id                    = var.ami_id != null ? var.ami_id : module.eks.workers_default_ami_id
+    image_id                    = var.ami_id
     security_groups             = [ aws_security_group.all_worker_mgmt.id, module.eks.worker_security_group_id ]
     key_name                    = var.key_name
     associate_public_ip_address = var.associate_public_ip_address
