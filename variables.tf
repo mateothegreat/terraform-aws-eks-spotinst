@@ -263,7 +263,9 @@ variable "instance_types_blacklist_gpu" {
 
         "g4dn.8xlarge",
         "g4dn.16xlarge",
-        "p3.2xlarge"
+        "p3.2xlarge",
+
+        "dl1.24xlarge"
 
     ]
 

@@ -1,5 +1,7 @@
 resource "aws_vpc_peering_connection" "this" {
 
+    count = var.vpc_cidr ? 1 : 0
+
     provider = aws.caller
 
     peer_owner_id = var.peering_owner_id
@@ -12,6 +14,8 @@ resource "aws_vpc_peering_connection" "this" {
 
 resource "aws_vpc_peering_connection_accepter" "peer" {
 
+    count = var.vpc_cidr ? 1 : 0
+
     provider = aws.accepter
 
     vpc_peering_connection_id = aws_vpc_peering_connection.this.id
@@ -21,6 +25,8 @@ resource "aws_vpc_peering_connection_accepter" "peer" {
 }
 
 resource "aws_route" "peering_forward" {
+
+    count = var.vpc_cidr ? 1 : 0
 
     provider = aws.accepter
 
@@ -32,6 +38,8 @@ resource "aws_route" "peering_forward" {
 
 resource "aws_route" "peering_backward" {
 
+    count = var.vpc_cidr ? 1 : 0
+
     provider = aws.caller
 
     route_table_id            = module.vpc.vpc_main_route_table_id
@@ -42,9 +50,10 @@ resource "aws_route" "peering_backward" {
 
 resource "aws_route" "peering_backward_private_subnets" {
 
+    count = var.vpc_cidr ? length(module.vpc.public_route_table_ids) : 0
+
     provider = aws.caller
 
-    count                     = length(module.vpc.private_route_table_ids)
     route_table_id            = module.vpc.private_route_table_ids[ count.index ]
     destination_cidr_block    = var.peering_originator_cidr
     vpc_peering_connection_id = aws_vpc_peering_connection.this.id
@@ -52,9 +61,11 @@ resource "aws_route" "peering_backward_private_subnets" {
 }
 resource "aws_route" "peering_backward_public_subnets" {
 
+    count = var.vpc_cidr ? length(module.vpc.public_route_table_ids) : 0
+
     provider = aws.caller
 
-    count                     = length(module.vpc.public_route_table_ids)
+
     route_table_id            = module.vpc.public_route_table_ids[ count.index ]
     destination_cidr_block    = var.peering_originator_cidr
     vpc_peering_connection_id = aws_vpc_peering_connection.this.id
@@ -62,6 +73,8 @@ resource "aws_route" "peering_backward_public_subnets" {
 }
 
 resource "aws_security_group_rule" "management" {
+
+    count = var.vpc_cidr ? 1 : 0
 
     provider = aws.caller
 
@@ -84,6 +97,8 @@ resource "aws_security_group_rule" "management" {
 }
 
 resource "aws_security_group" "all_worker_mgmt" {
+
+    count = var.vpc_cidr ? 1 : 0
 
     provider = aws.caller
 

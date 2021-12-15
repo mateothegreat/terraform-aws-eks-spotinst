@@ -83,7 +83,7 @@ variable "associate_public_ip_address" {
 variable "vpc_cidr" {
     type        = string
     description = "The cidr blocks for the vpc"
-    default     = "10.0.0.0/16"
+    default     = null
 }
 
 variable "private_subnets" {
@@ -267,7 +267,9 @@ variable "instance_types_blacklist_gpu" {
 
         "g4dn.8xlarge",
         "g4dn.16xlarge",
-        "p3.2xlarge"
+        "p3.2xlarge",
+
+        "dl1.24xlarge"
 
     ]
 
