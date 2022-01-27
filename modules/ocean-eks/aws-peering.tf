@@ -1,7 +1,5 @@
 resource "aws_vpc_peering_connection" "this" {
 
-    count = var.vpc_cidr ? 1 : 0
-
     provider = aws.caller
 
     peer_owner_id = var.peering_owner_id
@@ -14,8 +12,6 @@ resource "aws_vpc_peering_connection" "this" {
 
 resource "aws_vpc_peering_connection_accepter" "peer" {
 
-    count = var.vpc_cidr ? 1 : 0
-
     provider = aws.accepter
 
     vpc_peering_connection_id = aws_vpc_peering_connection.this.id
@@ -26,8 +22,6 @@ resource "aws_vpc_peering_connection_accepter" "peer" {
 
 resource "aws_route" "peering_forward" {
 
-    count = var.vpc_cidr ? 1 : 0
-
     provider = aws.accepter
 
     route_table_id            = var.peering_orginator_route_table_id
@@ -37,8 +31,6 @@ resource "aws_route" "peering_forward" {
 }
 
 resource "aws_route" "peering_backward" {
-
-    count = var.vpc_cidr ? 1 : 0
 
     provider = aws.caller
 
@@ -74,8 +66,6 @@ resource "aws_route" "peering_backward_public_subnets" {
 
 resource "aws_security_group_rule" "management" {
 
-    count = var.vpc_cidr ? 1 : 0
-
     provider = aws.caller
 
     depends_on = [
@@ -97,8 +87,6 @@ resource "aws_security_group_rule" "management" {
 }
 
 resource "aws_security_group" "all_worker_mgmt" {
-
-    count = var.vpc_cidr ? 1 : 0
 
     provider = aws.caller
 
