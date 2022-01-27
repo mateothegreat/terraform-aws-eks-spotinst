@@ -42,7 +42,7 @@ resource "aws_route" "peering_backward" {
 
 resource "aws_route" "peering_backward_private_subnets" {
 
-    count = var.vpc_cidr ? length(module.vpc.public_route_table_ids) : 0
+    count = length(module.vpc.public_route_table_ids)
 
     provider = aws.caller
 
@@ -53,7 +53,7 @@ resource "aws_route" "peering_backward_private_subnets" {
 }
 resource "aws_route" "peering_backward_public_subnets" {
 
-    count = var.vpc_cidr ? length(module.vpc.public_route_table_ids) : 0
+    count = length(module.vpc.public_route_table_ids)
 
     provider = aws.caller
 
