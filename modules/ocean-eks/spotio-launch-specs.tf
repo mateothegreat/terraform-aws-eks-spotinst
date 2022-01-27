@@ -5,7 +5,7 @@ resource "spotinst_ocean_aws_launch_spec" "launch_spec" {
     ocean_id         = spotinst_ocean_aws.this.id
     name             = var.launch_specs[ count.index ].name
     image_id         = var.launch_specs[ count.index ].image_id
-    instance_types   = var.launch_specs[ count.index ].instance_types
+    instance_types   = var.launch_specs[ count.index ].instance_types ? var.launch_specs[ count.index ].instance_types : var.instance_types_whitelist_gpu
     root_volume_size = var.launch_specs[ count.index ].root_volume_size
 
     resource_limits {

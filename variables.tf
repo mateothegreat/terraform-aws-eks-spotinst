@@ -242,10 +242,10 @@ variable "controller_node_selector" {
 
 }
 
-variable "instance_types_blacklist_gpu" {
+variable "instance_types_whitelist_gpu" {
 
     type        = list(string)
-    description = "types to blacklist for GPU instance types"
+    description = "types to whitelist for GPU instance types"
 
     default = [
 
@@ -266,6 +266,37 @@ variable "instance_types_blacklist_gpu" {
         "p3.2xlarge",
 
         "dl1.24xlarge"
+
+    ]
+
+}
+
+variable "instance_types_blacklist_gpu" {
+
+    type        = list(string)
+    description = "types to blacklist for GPU instance types"
+
+    default = [
+
+        "p3.2xlarge",
+        "p3.8xlarge",
+        "p3.16xlarge",
+        "p3dn.24xlarge",
+        "g4dn.xlarge",
+        "g4dn.2xlarge",
+        "g4dn.4xlarge",
+        "g4dn.8xlarge",
+        "g4dn.16xlarge",
+        "g4dn.12xlarge",
+        "g3s.xlarge",
+        "g2.2xlarge",
+        "g2.8xlarge",
+        "g3.4xlarge",
+        "g3.8xlarge",
+        "g3.16xlarge",
+        "p2.xlarge",
+        "p2.8xlarge",
+        "p2.16xlarge"
 
     ]
 
