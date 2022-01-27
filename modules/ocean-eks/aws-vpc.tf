@@ -1,7 +1,5 @@
 module "vpc" {
 
-    count = var.vpc_cidr ? 1 : 0
-
     providers = {
 
         aws = aws.caller
