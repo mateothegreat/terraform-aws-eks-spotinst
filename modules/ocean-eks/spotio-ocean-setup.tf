@@ -14,7 +14,7 @@ resource "spotinst_ocean_aws" "this" {
     key_name                    = var.key_name
     associate_public_ip_address = var.associate_public_ip_address
     iam_instance_profile        = aws_iam_instance_profile.workers.arn
-    blacklist                   = var.instance_types_blacklist_gpu
+    #    blacklist                   = var.instance_types_blacklist_gpu
 
     user_data = <<-EOF
         #!/bin/bash
