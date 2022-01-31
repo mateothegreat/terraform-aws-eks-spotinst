@@ -39,3 +39,9 @@ output "cluster_security_group_id" {
     value       = module.eks-spot.cluster_security_group_id
 
 }
+
+output "cluster_ca_certificate" {
+
+    value = module.eks-spot.cluster_ca_certificate
+
+}
