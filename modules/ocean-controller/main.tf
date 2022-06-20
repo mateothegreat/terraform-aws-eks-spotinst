@@ -47,7 +47,10 @@ resource "kubernetes_cluster_role" "this" {
 
     rule {
         api_groups = [ "" ]
-        resources  = [ "pods", "nodes", "services", "namespaces", "replicationcontrollers", "limitranges", "events", "persistentvolumes", "persistentvolumeclaims" ]
+        resources  = [
+            "pods", "nodes", "services", "namespaces", "replicationcontrollers", "limitranges", "events",
+            "persistentvolumes", "persistentvolumeclaims"
+        ]
         verbs      = [ "get", "list" ]
     }
 
@@ -469,4 +472,11 @@ resource "kubernetes_deployment" "this" {
             }
         }
     }
+
+    lifecycle {
+
+        ignore_changes = [ spec ]
+
+    }
+
 }
