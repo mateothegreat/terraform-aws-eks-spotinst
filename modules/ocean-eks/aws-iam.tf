@@ -1,6 +1,6 @@
 resource "aws_iam_role" "cluster" {
 
-    name =  "${ var.cluster_name }-clusterrole"
+    name = "${ var.cluster_name }-clusterrole"
 
     assume_role_policy = <<POLICY
 {
@@ -30,7 +30,7 @@ resource "aws_iam_role" "workers" {
 
     provider = aws.caller
 
-    name_prefix           = var.cluster_name
+    name                  = "${ var.cluster_name }-workerrole"
     assume_role_policy    = data.aws_iam_policy_document.workers_assume_role_policy.json
     force_detach_policies = true
     tags                  = var.tags
